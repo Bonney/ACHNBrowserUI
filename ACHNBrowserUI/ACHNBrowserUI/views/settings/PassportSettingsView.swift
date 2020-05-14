@@ -1,5 +1,5 @@
 //
-//  IslandSettingsView.swift
+//  PassportSettingsView.swift
 //  ACHNBrowserUI
 //
 //  Created by Matt Bonney on 5/9/20.
@@ -10,7 +10,7 @@ import SwiftUI
 import SwiftUIKit
 import Backend
 
-struct IslandSettingsView: View {
+struct PassportSettingsView: View {
     @ObservedObject var appUserDefaults = AppUserDefaults.shared
 
     var body: some View {
@@ -95,8 +95,8 @@ struct IslandSettingsView: View {
 
 }
 
-struct IslandSettingsView_Previews: PreviewProvider {
+struct PassportSettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView { IslandSettingsView() }
+        NavigationView { PassportSettingsView() }
     }
 }

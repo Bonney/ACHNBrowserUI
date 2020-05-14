@@ -57,7 +57,7 @@ struct SettingsView: View {
             Form {
 
                 Section(header: passportHeader) {
-                    NavigationLink(destination: IslandSettingsView()) {
+                    NavigationLink(destination: PassportSettingsView()) {
                         Text("Edit Island Details")
                     }
                 }

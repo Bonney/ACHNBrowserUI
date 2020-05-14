@@ -13,44 +13,58 @@ struct PassportView: View {
     @ObservedObject var appUserDefaults = AppUserDefaults.shared
     private var cornerRadius: CGFloat = 22
 
+    var passportLabel: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text("PASSPORT ")
+                .font(.system(.caption, design: .rounded))
+                .fontWeight(.black)
+                .kerning(0.5)
+                .foregroundColor(Color.acSecondaryText)
+                .rotationEffect(.degrees(-2))
+                .padding(10)
+            Divider()
+        }
+    }
+
+    var passportInfo: some View {
+        VStack(alignment: .leading) {
+
+            HStack {
+                Text(appUserDefaults.islandName == "" ? "Island Name" : appUserDefaults.islandName)
+                    .font(.system(.title, design: .rounded))
+                    .fontWeight(.bold)
+                    .foregroundColor(Color.acText)
+
+                Spacer()
+
+                appUserDefaults.fruit.image
+                    .resizable()
+                    .aspectRatio(1, contentMode: .fit)
+                    .frame(width: 32)
+            }
+
+            HStack {
+                residentServiceProgress
+                Spacer()
+                nookShopProgress
+                Spacer()
+                ableSistersProgress
+            }
+            .frame(maxWidth: .infinity)
+        }
+        .padding([.horizontal, .bottom])
+        .padding(.top, 10)
+    }
+
     var body: some View {
         VStack {
-            Text("– PASSPORT –")
-                .font(.system(.caption, design: .rounded))
-                .fontWeight(.bold)
-                .foregroundColor(Color.acSecondaryText)
 
-            Divider()
-
-            VStack(alignment: .leading) {
-
-                HStack {
-                    Text(appUserDefaults.islandName)
-                        .font(.system(.title, design: .rounded))
-                        .fontWeight(.bold)
-                        .foregroundColor(Color.acText)
-
-                    Spacer()
-
-                    appUserDefaults.fruit.image
-                        .resizable()
-                        .aspectRatio(1, contentMode: .fit)
-                        .frame(width: 32)
-                }
-
-                HStack {
-                    residentServiceProgress
-                    Spacer()
-                    nookShopProgress
-                    Spacer()
-                    ableSistersProgress
-                }
-                .frame(maxWidth: .infinity)
-            }
-            .padding(.bottom)
+            passportLabel
+            passportInfo
 
         }
-        .padding()
+//        .background(Color.acBackground)
+//        .padding(12)
         .background(innerBackground)
         .padding(12)
         .background(outerBackground)
@@ -138,10 +152,10 @@ struct PassportView: View {
             Image("Island")
                 .renderingMode(.template)
                 .resizable()
-                .aspectRatio(1, contentMode: .fit)
+                .aspectRatio(1, contentMode: .fill)
                 .foregroundColor(Color.acBackground)
-                .frame(maxWidth: 60)
-                .padding(.bottom, -8)
+                .frame(maxWidth: 100)
+                .padding(.bottom, -10)
         }
         .mask(RoundedRectangle(cornerRadius: cornerRadius * 0.7, style: .continuous))
         .shadow(radius: 1)
@@ -151,6 +165,9 @@ struct PassportView: View {
 
 struct PassportView_Previews: PreviewProvider {
     static var previews: some View {
-        PassportView().previewLayout(.sizeThatFits).padding().background(Color.white)
+        PassportView()
+            .previewLayout(.sizeThatFits)
+            .padding()
+            .background(Color.white)
     }
 }

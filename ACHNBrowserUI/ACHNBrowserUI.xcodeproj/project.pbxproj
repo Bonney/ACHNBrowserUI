@@ -15,7 +15,7 @@
 		024363DD2465EA15006A37A0 /* TodayBirthdaysSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024363D52465EA15006A37A0 /* TodayBirthdaysSection.swift */; };
 		024363DE2465EA15006A37A0 /* TodayTasksSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024363D62465EA15006A37A0 /* TodayTasksSection.swift */; };
 		024363DF2465EA15006A37A0 /* TodayCollectionProgressSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024363D72465EA15006A37A0 /* TodayCollectionProgressSection.swift */; };
-		024363E124671F33006A37A0 /* IslandSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024363E024671F33006A37A0 /* IslandSettingsView.swift */; };
+		024363E124671F33006A37A0 /* PassportSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024363E024671F33006A37A0 /* PassportSettingsView.swift */; };
 		024363E324675A6B006A37A0 /* PassportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024363E224675A6B006A37A0 /* PassportView.swift */; };
 		028620752454C32800795719 /* AppIconPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028620742454C32800795719 /* AppIconPickerView.swift */; };
 		02F2D3F92455D81C009741DA /* bookmark-gold@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02F2D3A82455D81C009741DA /* bookmark-gold@2x.png */; };
@@ -275,7 +275,7 @@
 		024363D52465EA15006A37A0 /* TodayBirthdaysSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayBirthdaysSection.swift; sourceTree = "<group>"; };
 		024363D62465EA15006A37A0 /* TodayTasksSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayTasksSection.swift; sourceTree = "<group>"; };
 		024363D72465EA15006A37A0 /* TodayCollectionProgressSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayCollectionProgressSection.swift; sourceTree = "<group>"; };
-		024363E024671F33006A37A0 /* IslandSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IslandSettingsView.swift; sourceTree = "<group>"; };
+		024363E024671F33006A37A0 /* PassportSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportSettingsView.swift; sourceTree = "<group>"; };
 		024363E224675A6B006A37A0 /* PassportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportView.swift; sourceTree = "<group>"; };
 		028620742454C32800795719 /* AppIconPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconPickerView.swift; sourceTree = "<group>"; };
 		02F2D3A82455D81C009741DA /* bookmark-gold@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bookmark-gold@2x.png"; sourceTree = "<group>"; };
@@ -767,7 +767,7 @@
 			isa = PBXGroup;
 			children = (
 				697E63FF244AD66E008FB710 /* SettingsView.swift */,
-				024363E024671F33006A37A0 /* IslandSettingsView.swift */,
+				024363E024671F33006A37A0 /* PassportSettingsView.swift */,
 				024363E224675A6B006A37A0 /* PassportView.swift */,
 				028620742454C32800795719 /* AppIconPickerView.swift */,
 			);
@@ -1341,7 +1341,7 @@
 				4C382EE8244E418800F446BA /* DismissingKeyboardOnSwipe.swift in Sources */,
 				69B13CA6245598E80089BD7B /* ItemDetailSeasonSectionView.swift in Sources */,
 				697E63F92449DADE008FB710 /* VillagerRowView.swift in Sources */,
-				024363E124671F33006A37A0 /* IslandSettingsView.swift in Sources */,
+				024363E124671F33006A37A0 /* PassportSettingsView.swift in Sources */,
 				4C7FE789245B57A10011E8AB /* AdaptsToSoftwareKeyboard.swift in Sources */,
 				69B13CAD24577A090089BD7B /* TurnipIslandRow.swift in Sources */,
 				693E2BC02465B71000B85CB8 /* CategoryHeaderView.swift in Sources */,
