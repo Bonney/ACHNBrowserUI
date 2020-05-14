@@ -14,7 +14,9 @@ struct SettingsView: View {
     @EnvironmentObject private var subscriptionManager: SubscriptionManager
     @Environment(\.presentationMode) private var presentationMode
     @ObservedObject var appUserDefaults = AppUserDefaults.shared
-        
+
+    @State private var passportOffset: CGFloat = -400
+
     var closeButton: some View {
         Button(action: {
             self.presentationMode.wrappedValue.dismiss()
@@ -23,69 +25,50 @@ struct SettingsView: View {
                 .style(appStyle: .barButton)
                 .foregroundColor(.acText)
         })
-        .buttonStyle(BorderedBarButtonStyle())
-        .accentColor(Color.acText.opacity(0.2))
-        .safeHoverEffectBarItem(position: .leading)
+            .buttonStyle(BorderedBarButtonStyle())
+            .accentColor(Color.acText.opacity(0.2))
+            .safeHoverEffectBarItem(position: .leading)
+    }
+
+    var passport: some View {
+        PassportView()
+            .padding(.bottom)
+            .scaleEffect(self.passportOffset == 0 ? 1.0 : 0.5)
+            .opacity(self.passportOffset == 0 ? 1.0 : 0.0)
+//            .offset(x: passportOffset, y: 0)
+//            .rotationEffect(.degrees(passportOffset == 0 ? 0 : -15))
+            .animation(Animation.spring().delay(0.25))
+            .onAppear { self.passportOffset = 0 }
+            .onDisappear { self.passportOffset = 400 }
+    }
+
+    var passportHeader: some View {
+        Group {
+            if !(appUserDefaults.islandName.isEmpty || appUserDefaults.islandName == "") {
+                passport
+            } else {
+                SectionHeaderView(text: "Set Up Your Passport!", icon: "book.fill")
+            }
+        }
     }
 
     var body: some View {
         NavigationView {
             Form {
-                Section(header: SectionHeaderView(text: "Island")) {
-                    HStack {
-                        Text("Island name")
-                        Spacer()
-                        TextField("Your island name", text: $appUserDefaults.islandName)
-                            .font(.body)
-                            .foregroundColor(.secondary)
-                    }
-                    Picker(selection: $appUserDefaults.hemisphere,
-                           label: Text("Hemisphere")) {
-                            ForEach(Hemisphere.allCases, id: \.self) { hemispehere in
-                                Text(hemispehere.rawValue.capitalized).tag(hemispehere)
-                            }
-                    }
-                    Picker(selection: $appUserDefaults.fruit,
-                           label: Text("Starting fruit")) {
-                            ForEach(Fruit.allCases, id: \.self) { fruit in
-                                HStack {
-                                    Image(fruit.rawValue.capitalized)
-                                        .renderingMode(.original)
-                                        .resizable()
-                                        .frame(width: 30, height: 30)
-                                    Text(fruit.rawValue.capitalized).tag(fruit)
-                                }
-                            }
-                    }
-                    
-                    Picker(selection: $appUserDefaults.nookShop,
-                           label: Text("Nook shop")) {
-                            ForEach(Infrastructure.NookShop.allCases, id: \.self) { shop in
-                                Text(shop.rawValue).tag(shop)
-                            }
-                    }
-                    
-                    Picker(selection: $appUserDefaults.ableSisters,
-                           label: Text("Able sisters")) {
-                            ForEach(Infrastructure.AbleSisters.allCases, id: \.self) { sisters in
-                                Text(sisters.rawValue.capitalized).tag(sisters)
-                            }
-                    }
-                    
-                    Picker(selection: $appUserDefaults.residentService,
-                           label: Text("Residents service")) {
-                            ForEach(Infrastructure.ResidentService.allCases, id: \.self) { service in
-                                Text(service.rawValue.capitalized).tag(service)
-                            }
+
+                Section(header: passportHeader) {
+                    NavigationLink(destination: IslandSettingsView()) {
+                        Text("Edit Island Details")
                     }
                 }
-                
-                Section(header: SectionHeaderView(text: "App Settings")) {
+
+                Section {
                     if UIApplication.shared.supportsAlternateIcons && UIDevice.current.userInterfaceIdiom != .pad {
                         NavigationLink(destination: AppIconPickerView()) {
-                            Text("App Icon")
+                            Text("Change App Icon")
                         }
                     }
+
                     Button(action: {
                         self.subscriptionManager.restorePurchase()
                     }) {
@@ -93,7 +76,7 @@ struct SettingsView: View {
                             Text("You're subscribed to AC Helper+")
                                 .foregroundColor(.acSecondaryText)
                         } else {
-                            Text("Restore purchase")
+                            Text("Restore Purchase")
                                 .foregroundColor(.acHeaderBackground)
                         }
                     }
@@ -103,9 +86,10 @@ struct SettingsView: View {
             }
             .listStyle(GroupedListStyle())
             .environment(\.horizontalSizeClass, .regular)
-            .navigationBarTitle(Text("Preferences"), displayMode: .inline)
+            .navigationBarTitle(Text("Preferences"))
             .navigationBarItems(leading: closeButton)
-        }.navigationViewStyle(StackNavigationViewStyle())
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
